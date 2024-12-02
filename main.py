@@ -8,11 +8,12 @@ def main():
     soup = BeautifulSoup(html_doc.content, "html.parser")
     x = soup.find_all('a', {'class': 'group focus-visible:outline-0'})
     drivers = []
+    name_re = 'font-formulaOne">(.*?)</p>'
+    points_re = 'leading-none normal-case">([0-9]+)</p>'
+    pos_re = 'text-fs-42px leading-none\">([0-9]+)</p>'
+    racing_num_re = 'Racing Number ([0-9]+)\"'
+    
     for data in x:
-        name_re = 'font-formulaOne">(.*?)</p>'
-        points_re = 'leading-none normal-case">([0-9]+)</p>'
-        pos_re = 'text-fs-42px leading-none\">([0-9]+)</p>'
-        racing_num_re = 'Racing Number ([0-9]+)\"'
         tmp_data = str(data)
 
         name = re.findall(name_re, tmp_data)
